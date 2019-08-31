@@ -1,0 +1,83 @@
+----For Push your code in git repository
+echo "# BasicCrudApp" >> README.md
+git init
+git add .
+git commit -am "first commit"
+git remote add origin https:/github.com/amitarvindpatil/BasicCrudApp.git
+git push -u origin master
+
+
+Pip freeze-
+Installed package in requirement Format.
+Package are listed in case-sensative sorted order
+
+1)Pathon –version
+Check python version
+
+2)Pip install Django
+Install Django  in Enviroment
+
+3)python -m venv ./venv
+create an environment on location
+
+4)(base) G:\python prog\Django\dev\btre_project\venv\Scripts>activate.bat
+Activate the Enviroment
+
+5)(base) G:\python prog\Django\dev\btre_project\venv\Scripts>deactivate
+Deactivate the ENV
+
+
+git add . && git commit -m "Initial commit"
+
+
+6)Django-admin startproject btre
+Create a project
+
+7)
+python manage.py startapp pages
+create Application/Modules and files
+
+8)
+python manage.py makemigrations
+makemigrations, which is responsible for creating new migrations based on the changes you have made to your models.
+
+9)
+python manage.py sqlmigrate listings 0001
+sqlmigrate, which displays the SQL statements for a migration
+
+10)
+python manage.py migrate
+Migrations are Django’s way of propagating changes you make to your models (adding a field, deleting a model, etc.) into your database schema. They’re designed to be mostly automatic, but you’ll need to know when to make migrations, when to run them, and the common problems you might run into
+
+11)
+python manage.py createsuperuser
+crate a super user for admin
+
+
+
+Extra Commands
+pip install pillow
+nstall Pillow with support for most common image formats. See External Libraries for a full list of external libraries supported.
+showmigrations, which lists a project’s migrations and their status.
+
+pip install pylint-django
+
+
+pip install autopep8
+autopep8 formats Python code based on the output of the pep8 utility.
+pip install pylint
+Pylint is a Python static code analysis tool which looks for programming errors, helps enforcing a coding standard, sniffs for code smells and offers simple refactoring suggestions.
+
+Python -m pip install --upgrade pip
+install the updated pip version
+
+
+GITHUB Push 
+Create a New Repository
+https://github.com/amitarvindpatil/real_estate.git
+PUT 
+DELETE
+GET
+POST
+JSON
+
