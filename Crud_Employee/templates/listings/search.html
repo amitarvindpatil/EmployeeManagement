@@ -1,0 +1,45 @@
+{%extends 'base.html'%}
+{% block content%}
+
+<center>
+    <h1>Employee data</h1>
+</center>
+<div class="container">
+    <form action="{% url 'search' %}">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="name" class="form-control" value="" placeholder="Name">
+            </div>
+            <button class="btn btn-success" type="submit">Search </button>
+
+        </div>
+    </form>
+    {% if search_data %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>EmployeeId</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sdata in search_data %}
+            <tr>
+                <td>{{sdata.id}}</td>
+                <td>{{sdata.name}}</td>
+                <td>{{sdata.department}}</td>
+                <td><a href="/employee_details/{{emplist.id}}" class="btn btn-info">Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Employee Data Not Found</p>
+    {% endif %}
+</div>
+
+
+{% endblock %}

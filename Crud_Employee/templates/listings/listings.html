@@ -1,0 +1,91 @@
+{%extends 'base.html'%}
+{% block content%}
+
+<center>
+    <h1>Employee data</h1>
+</center>
+<div class="container">
+    <form action="{% url 'search' %}">
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label class="sr-only">Keywords</label>
+                <input type="text" name="name" class="form-control" placeholder="Name">
+            </div>
+            <button class="btn btn-success" type="submit">Search </button>
+
+        </div>
+    </form>
+    {% if employee_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>EmployeeId</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for emplist in employee_list %}
+            <tr>
+                <td>{{emplist.id}}</td>
+                <td>{{emplist.name}}</td>
+                <td>{{emplist.department}}</td>
+                <td><a href="/employee_details/{{emplist.id}}" class="btn btn-info">Details</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <p>Employee Data Not Found</p>
+    {% endif %}
+
+    <!-- Pagination -->
+    <div class="row">
+        <div class="col-md-12">
+            {% if employee_list.has_other_pages %}
+            <ul class="pagination">
+                {% if employee_list.has_previous %}
+                <li class="page-item">
+                    <a href="?page={{employee_list.previous_page_number}}" class="page-link">&laquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&laquo;</a>
+                </li>
+                {% endif %}
+
+                {% for i in employee_list.paginator.page_range %}
+                {% if employee_list.number == i %}
+                <li class="page-item active">
+                    <a class="page-link">{{i}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                    <a href="?page={{i}}" class="page-link">{{i}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+
+
+                {% if employee_list.has_next %}
+                <li class="page-item">
+                    <a href="?page={{employee_list.next_page_number}}" class="page-link">&raquo;</a>
+                </li>
+                {% else %}
+                <li class="page-item disabled">
+                    <a class="page-link">&raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+
+
+
+
+{% endblock %}

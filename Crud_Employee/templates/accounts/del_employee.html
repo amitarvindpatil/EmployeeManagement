@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="register" class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Delete Information</h4>
+                    </div>
+
+
+                    <div class="card-body">
+                        <form action="/del_data/{{del_data.id}}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="" value="{{del_data.name}}" class="form-control"
+                                    readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="salary">Salary</label>
+                                <input type="text" name="salary" id="" value="{{del_data.salary}}" class="form-control"
+                                    readonly>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <input type="text" name="department" id="" value="{{del_data.department}}"
+                                    class="form-control" readonly>
+                            </div>
+                            <input type="submit" value="Delete" class="btn btn-secondary btn-danger">
+                            <a href="{% url 'dashboard' %}" class=" btn btn-success">Back to Dashboard </a>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}
