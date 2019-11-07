@@ -1,0 +1,137 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Dashboard</h1>
+</center>
+{% for data in dashboard_list %}
+
+{% if data.roles.id == 1 %}
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="col-sm-2 sidenav">
+            <p><a href="{% url 'add_record' %}" class="btn btn-info"> Employee Section</a> </p>
+            <p><a href="{% url 'department_list' %}" class="btn btn-info">Department Section</a> </p>
+            <p><a href="{% url 'auth_permission_dash' %}" class="btn btn-info">Authenticaton And Permissions</a></p>
+            <p></p>
+        </div>
+        <div class="container">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html '%}
+
+            {% if dashboard_list %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>EmpName</th>
+                        <th>Designation</th>
+                        <th>Department</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{data.id}}</td>
+                        <td>{{data.name}}</td>
+                        <td>{{data.designations.name}}</td>
+                        <td>{{data.departments.deptname}}</td>
+                        <td><a href="/edit_info/{{data.id}}" class="btn btn-info">Edit</a>
+                            <a href="/del_info/{{data.id}}" class=" btn btn-danger">Delete</a></td>
+
+                    </tr>
+                </tbody>
+                {% else %}
+                <p>Data Not Found</p>
+                {% endif %}
+            </table>
+
+            <!-- Pagination -->
+            <div class="row">
+                <div class="col-md-12">
+                    {% if dashboard_list.has_other_pages %}
+                    <ul class="pagination">
+                        {% if dashboard_list.has_previous %}
+                        <li class="page-item">
+                            <a href="?page={{dashboard_list.previous_page_number}}" class="page-link">&laquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link">&laquo;</a>
+                        </li>
+                        {% endif %}
+
+                        {% for i in dashboard_list.paginator.page_range %}
+                        {% if dashboard_list.number == i %}
+                        <li class="page-item active">
+                            <a class="page-link">{{i}}</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item">
+                            <a href="?page={{i}}" class="page-link">{{i}}</a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+
+
+                        {% if dashboard_list.has_next %}
+                        <li class="page-item">
+                            <a href="?page={{dashboard_list.next_page_number}}" class="page-link">&raquo;</a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <a class="page-link">&raquo;</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+{% else %}
+
+<div class="container">
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html '%}
+
+    {% if dashboard_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>EmpName</th>
+                <th>Designation</th>
+                <th>Department</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{data.id}}</td>
+                <td>{{data.name}}</td>
+                <td>{{data.designations.name}}</td>
+                <td>{{data.departments.deptname}}</td>
+                <td><a href="/edit_empuser/{{data.id}}" class="btn btn-info">Edit</a>
+                </td>
+
+            </tr>
+        </tbody>
+        {% else %}
+        <p>Data Not Found</p>
+        {% endif %}
+    </table>
+
+
+</div>
+</div>
+
+{%endif%}
+
+{% endfor %}
+
+{% endblock %}

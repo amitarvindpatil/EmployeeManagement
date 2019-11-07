@@ -30,7 +30,7 @@
             <tr>
                 <td>{{emplist.id}}</td>
                 <td>{{emplist.name}}</td>
-                <td>{{emplist.department}}</td>
+                <td>{{emplist.departments.deptname}}</td>
                 <td><a href="/employee_details/{{emplist.id}}" class="btn btn-info">Details</a></td>
             </tr>
             {% endfor %}
@@ -83,9 +83,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
 {% endblock %}

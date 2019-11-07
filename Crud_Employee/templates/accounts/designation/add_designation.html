@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="register" class="bg-light py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mx-auto">
+                <div class="card">
+                    <div class="card-header bg-primary text-white">
+                        <h4>Add Information</h4>
+                    </div>
+
+
+                    <div class="card-body">
+                        <form action="{% url 'add_designation' %}" method="POST">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+
+                            <input type="submit" value="Submit" class="btn btn-secondary btn-success">
+                            <a href="{% url 'designation_list' %}" class=" btn btn-success">Back to Dashboard
+                            </a>
+                        </form>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+{% endblock %}

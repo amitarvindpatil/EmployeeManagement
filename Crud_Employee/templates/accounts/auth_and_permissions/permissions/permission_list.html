@@ -1,0 +1,36 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Dashboard(Permissions Section)</h1>
+</center>
+<div class="container">
+    <a href="{% url 'auth_permission_dash' %}" class="btn btn-info">Back</a> <br> <br>
+
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html '%}
+
+    {% if permission_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for prlist in permission_list %}
+            <tr>
+                <td>{{prlist.id}}</td>
+                <td>{{prlist.name}}</td>
+
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p>Data Not Found</p>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

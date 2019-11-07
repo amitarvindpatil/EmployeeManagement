@@ -1,8 +1,8 @@
-----For Push your code in git repository
+﻿----For Push your code in git repository
 echo "# BasicCrudApp" >> README.md
 git init
 git add .
-git commit -am "first commit"
+git commit -m "first commit"
 git remote add origin https:/github.com/amitarvindpatil/BasicCrudApp.git
 git push -u origin master
 
@@ -30,7 +30,7 @@ Deactivate the ENV
 git add . && git commit -m "Initial commit"
 
 
-6)Django-admin startproject btre
+	6)Django-admin startproject btre
 Create a project
 
 7)

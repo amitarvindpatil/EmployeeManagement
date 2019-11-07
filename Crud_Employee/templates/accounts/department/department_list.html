@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Dashboard</h1>
+</center>
+<div class="container">
+    <a href="{% url 'add_dept' %}" class="btn btn-primary">Add Department</a> <br> <br>
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html '%}
+
+    {% if department_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Departments</th>
+                <th>Location</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for dlist in department_list %}
+            <tr>
+                <td>{{dlist.id}}</td>
+                <td>{{dlist.deptname}}</td>
+                <td>{{dlist.location}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p>Data Not Found</p>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

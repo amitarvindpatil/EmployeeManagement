@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<section id="register" class="bg-light py-5">
+    <div class="container">
+        <div class="container-fluid">
+            <div class="row content">
+                <div class="col-sm-3 sidenav">
+                    <h4>{{edit_data.name}}</h4>
+
+                    <img src="{{ edit_data.photo.url }}" alt="Please Update Image" class="img-thumbnail">
+                    <form action="/update_file/{{edit_data.id}}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="photo">Photo Upload</label>
+                            <input type="file" name="photo" id="file" value="" class="form-control"> <br>
+                            <input type="submit" value="Update Photo" class="btn btn-secondary btn-info">
+
+                            <br>
+                        </div>
+                    </form>
+
+                </div>
+
+                <div class="col-sm-9">
+                    <h3>Employee Details</h3>
+
+                    <div class="card-body">
+                        <form action="/update_data/{{edit_data.id}}" method="POST">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="" value="{{edit_data.name}}" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="salary">Salary</label>
+                                <input type="text" name="salary" id="" value="{{edit_data.salary}}" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="departments">Department</label>
+
+                                <select name="departments" class="form-control">
+
+                                    {% for dept in depts %}
+                                    <option value="{{ dept.id }}" {% if dept.id ==  edit_data.departments_id %} selected
+                                        {% endif %}>
+                                        {{ dept.deptname }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="designations">Designations</label>
+
+                                <select name="designations" class="form-control">
+
+                                    {% for dg in desg %}
+                                    <option value="{{ dg.id }}" {% if dg.id ==  edit_data.designations_id %} selected
+                                        {% endif %}>
+                                        {{ dg.name }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="roles">Roles</label>
+                                <select name="roles" class="form-control">
+
+                                    {% for rl in role %}
+                                    <option value="{{ rl.id }}" {% if rl.id ==  edit_data.roles_id %} selected
+                                        {% endif %}>
+                                        {{ rl.name }}</option>
+                                    {% endfor %}
+                                </select>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">phone</label>
+                                <input type="text" name="phone" id="" value="{{edit_data.phone}}" class="form-control"
+                                    required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="" value="{{edit_data.email}}" class="form-control"
+                                    required>
+                            </div>
+
+
+
+                            <input type="submit" value="Update" class="btn btn-secondary btn-info">
+                            <a href="{% url 'add_record' %}" class=" btn btn-success">Back to Dashboard </a>
+
+                        </form>
+
+                        <br><br>
+
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+</section>
+
+
+
+{% endblock %}

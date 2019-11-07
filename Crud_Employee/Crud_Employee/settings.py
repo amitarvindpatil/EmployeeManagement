@@ -41,6 +41,10 @@ INSTALLED_APPS = [
     'emp_app',
     'pages',
     'accounts',
+    'department',
+    'designation',
+    'role',
+    'permission',
 ]
 
 MIDDLEWARE = [
@@ -80,7 +84,7 @@ WSGI_APPLICATION = 'Crud_Employee.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'mydatabase',
+        'NAME': 'emplyeedb',
         'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': 'localhost',

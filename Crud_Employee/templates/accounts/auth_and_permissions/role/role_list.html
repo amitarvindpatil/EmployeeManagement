@@ -1,0 +1,37 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Dashboard(Role Section)</h1>
+</center>
+<div class="container">
+    <a href="{% url 'auth_permission_dash' %}" class="btn btn-info">Back</a>
+    <a href="{% url 'check_permissions' %}" class="btn btn-info">Check Permissions</a> <br> <br>
+
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html '%}
+
+    {% if role_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Role</th>
+                <th>Give Permissions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for rllist in role_list %}
+            <tr>
+                <td>{{rllist.id}}</td>
+                <td>{{rllist.name}}</td>
+                <td><a href="/role_permissions/{{rllist.id}}" class="btn btn-primary">Give Permissions</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p>Data Not Found</p>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Dashboard(Designation Management)</h1>
+</center>
+<div class="container">
+    <a href="{% url 'add_designation' %}" class="btn btn-primary">Add Designation</a>
+    <a href="{% url 'auth_permission_dash' %}" class="btn btn-info">Back</a> <br> <br>
+
+    <!-- Alerts -->
+    {% include 'partials/_alerts.html '%}
+
+    {% if designation_list %}
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>designation</th>
+                <th>Action</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for dglist in designation_list %}
+            <tr>
+                <td>{{dglist.id}}</td>
+                <td>{{dglist.name}}</td>
+                <td><a href="/edit_designation/{{dglist.id}}" class="btn btn-info">Edit</a>
+                    <a href="/del_designation/{{dglist.id}}" class=" btn btn-danger">Delete</a></td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <p>Data Not Found</p>
+        {% endif %}
+    </table>
+</div>
+{% endblock %}

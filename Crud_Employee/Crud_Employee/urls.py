@@ -24,6 +24,9 @@ urlpatterns = [
     path('', include('emp_app.urls')),
     path('', include('pages.urls')),
     path('', include('accounts.urls')),
+    path('', include('department.urls')),
+
+
 ]
 
 if settings.DEBUG:

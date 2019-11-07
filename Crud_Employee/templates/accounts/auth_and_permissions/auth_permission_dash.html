@@ -1,0 +1,43 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Authentication And Permission Management</h1>
+</center>
+<div class="container-fluid text-center">
+    <div class="row content">
+
+        <div class="container">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html '%}
+            <div class="card-columns">
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <p class="card-text"><a href="{% url 'designation_list' %}" class="btn btn-light">Desingation
+                                Section</a></p>
+                    </div>
+                </div>
+
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <p class="card-text"><a href="{% url 'role_list' %}" class="btn btn-light">Roles
+                                Section</a></p>
+                    </div>
+                </div>
+
+                <div class="card bg-light">
+                    <div class="card-body text-center">
+                        <p class="card-text"><a href="{% url 'permission_list' %}" class="btn btn-light">Permissions
+                                Section</a></p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Pagination -->
+
+        </div>
+    </div>
+
+
+</div>
+{% endblock %}
