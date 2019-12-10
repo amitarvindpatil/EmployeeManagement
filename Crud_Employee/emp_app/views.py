@@ -9,6 +9,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 from emp_app.models import Department, Designation, Role
 
+from django.db.models import Count
 # --------------------Employee FrontEnd
 
 
@@ -55,7 +56,6 @@ class EmployeeFrontView:
 # --------------------Employee Backend----------------------
 class EmployeeClass:
     def dashboard(request):
-
         dashboard_list = EmployeeList.objects.order_by(
             '-id').filter(user_id=request.user.id)
 
@@ -66,6 +66,22 @@ class EmployeeClass:
         context = {
             'dashboard_list': page_listings
         }
+
+        return context
+
+    def myprofile(request):
+
+        myprofile_list = EmployeeList.objects.order_by(
+            '-id').filter(user_id=request.user.id)
+
+        paginator = Paginator(myprofile_list, 6)
+        page = request.GET.get('page')
+        page_listings = paginator.get_page(page)
+
+        context = {
+            'myprofile_list': page_listings
+        }
+
         return context
 
     def departmentdata():
@@ -91,7 +107,7 @@ class EmployeeClass:
 
     def add_record(request):
         employee_list = EmployeeList.objects.filter(roles_id=2)
-        paginator = Paginator(employee_list, 5)
+        paginator = Paginator(employee_list, 3)
         page = request.GET.get('page')
         page_listings = paginator.get_page(page)
         add_context = {
@@ -136,6 +152,7 @@ class EmployeeClass:
         if request.method == "POST":
             empdata = EmployeeList.objects.get(pk=id)
             empdata.name = request.POST['name']
+            print(empdata.name)
             empdata.salary = request.POST['salary']
             print(request.POST['salary'])
             empdata.departments_id = request.POST['departments']
@@ -156,7 +173,7 @@ class EmployeeClass:
             empimage.photo = request.FILES['photo']
             empimage.save()
             messages.success(request, "Image Updated")
-        return redirect('dashboard')
+        return redirect('myprofile')
 
     def del_info(request, id):
         del_data = get_object_or_404(EmployeeList, pk=id)
@@ -172,3 +189,18 @@ class EmployeeClass:
             delete_data.delete()
             messages.error(request, "Data Deleted")
         return redirect('dashboard')
+
+# -----------------------Reports------------------------------
+
+
+class ReportsClass:
+    def desginationwise_count(request):
+
+        designationcnt_list = EmployeeList.objects.values('designations').annotate(
+            total=Count('designations')).order_by('total')
+
+        context = {
+            'designationcnt_list': designationcnt_list
+        }
+
+        return context

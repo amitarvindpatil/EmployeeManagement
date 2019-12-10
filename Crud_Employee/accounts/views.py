@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib import messages, auth
+from django.contrib.auth.forms import PasswordChangeForm
 from emp_app.models import EmployeeList
 from emp_app.models import Department
 from designation.models import Designation
@@ -14,7 +15,7 @@ from designation.forms import DesignationForm
 from emp_app.forms import EmployeeForm
 from designation.views import DesignationClass
 from department.views import DepartmentClass
-from emp_app.views import EmployeeClass
+from emp_app.views import EmployeeClass, ReportsClass
 from role.views import RoleClass, RolePermissionsClass
 from permission.views import PermissionClass
 from hashlib import sha1
@@ -92,30 +93,21 @@ class Authentication:
             messages.success(request, 'You are logout Now')
             return redirect('index')
 
-    def edit_changepassword(request, id):
-        edit_password = get_object_or_404(User, pk=id)
-        pass_context = {
-            'edit_password': edit_password
-        }
-        return render(request, 'accounts/changepassword.html', pass_context)
+    # def changepassword(request):
+    #     if request.method == 'POST':
+    #         form = PasswordChangeForm(data=request.POST, user=request.user)
 
-    def changepassword(request, id):
-        if request.method == "POST":
-            oldpassword = request.POST['oldpassword']
-            print(oldpassword)
-            passwords = request.POST['password']
-            # confirmpasswords = request.POST['confirmpassword']
-            #     data = User.objects.filter(password=oldpassword)
-            #     _, salt, hashpw = data.split('$')
-            #     sha1(salt+data).hexdigest() == hashpw
+    #         if form.is_valid():
+    #             form.save()
+    #             update_session_auth_hash(request, form.user)
+    #             return redirect(reverse('accounts:changepassword'))
+    #         else:
+    #             return redirect(reverse('accounts:changepassword'))
+    #     else:
+    #         form = PasswordChangeForm(user=request.user)
 
-            # print(data)
-            # if data == True:
-            #     messages.error(request, 'Pass')
-            #     return redirect('dashboard')
-            # else:
-            #     messages.error(request, 'Complete Fail')
-        return redirect('dashboard')
+    #         args = {'form': form}
+    #         return render(request, 'accounts/changepassword.html', args)
 
 
 class Employees:
@@ -123,6 +115,10 @@ class Employees:
     def dashboard(request):
         context = EmployeeClass.dashboard(request)
         return render(request, 'accounts/emp_app/dashboard.html', context)
+
+    def myprofile(request):
+        context = EmployeeClass.myprofile(request)
+        return render(request, 'accounts/myprofile/myprofile.html', context)
 
     # Add Record
 
@@ -245,3 +241,9 @@ class Permissions:
     def permission_list(request):
         permission_context = PermissionClass.permission_list(request)
         return render(request, 'accounts/auth_and_permissions/permissions/permission_list.html', permission_context)
+
+
+class Reports:
+    def desginationwise_count(request):
+        designationwise_context = ReportsClass.desginationwise_count(request)
+        return render(request, 'accounts/Reports/desginationwise_count.html', designationwise_context)

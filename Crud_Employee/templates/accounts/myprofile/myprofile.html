@@ -1,0 +1,105 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>MyProfile</h1>
+    <center>
+        {% for data in myprofile_list %}
+
+        {% if data.roles.id == 1 %}
+        <div class="container-fluid text-center">
+            <div class="row content">
+
+                <div class="container">
+                    <!-- Alerts -->
+                    {% include 'partials/_alerts.html '%}
+
+                    {% if myprofile_list %}
+                    <div class="w3-row w3-container">
+
+                        <div class="w3-col s3 w3-left">
+                            <img src="{{ data.photo.url }}" alt="Alps" class="w3-border w3-padding">
+                        </div>
+                        <div class="w3-col s9 w3-light-grey w3-left"><br>
+                            <a href="/edit_info/{{data.id}}"
+                                class="w3-button w3-white w3-border w3-border-red w3-round-large w3-right">Edit
+                                details</a><br>
+
+                            <ul class="w3-ul">
+                                <li>
+                                    <h2>{{data.name}}</h2>
+                                </li>
+                                <li>Designation : {{data.designations}}</li>
+                                <li>Department : {{data.departments.deptname}}</li>
+                                <li>Salary : {{data.salary}}</li>
+                                <li>Email : {{data.email}}</li>
+                                <li>Contact No : {{data.phone}}</li>
+                            </ul>
+                            {% else %}
+                            <p>Data Not Found</p>
+                            {% endif %}
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+        {% else %}
+        <div class="container-fluid text-center">
+            <div class="row content">
+
+                <div class="container">
+                    <!-- Alerts -->
+                    {% include 'partials/_alerts.html '%}
+
+                    {% if myprofile_list %}
+                    <div class="w3-row w3-container">
+
+                        <div class="w3-col s3 w3-left">
+                            <img src="{{ data.photo.url }}" alt="Alps" class="w3-border w3-padding">
+                        </div>
+                        <div class="w3-col s9 w3-light-grey w3-left"><br>
+                            <a href="/edit_empuser/{{data.id}}"
+                                class="w3-button w3-white w3-border w3-border-red w3-round-large w3-right">Edit
+                                details</a><br>
+
+                            <ul class="w3-ul">
+                                <li>
+                                    <h2>{{data.name}}</h2>
+                                </li>
+                                <li>Designation : {{data.designations}}</li>
+                                <li>Department : {{data.departments.deptname}}</li>
+                                <li>Salary : {{data.salary}}</li>
+                                <li>Email : {{data.email}}</li>
+                                <li>Contact No : {{data.phone}}</li>
+                            </ul>
+                            {% else %}
+                            <p>Data Not Found</p>
+                            {% endif %}
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+        {%endif%}
+
+        {% endfor %}
+
+        {% endblock %}

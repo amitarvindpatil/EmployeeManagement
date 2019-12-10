@@ -11,7 +11,7 @@ Pip freeze-
 Installed package in requirement Format.
 Package are listed in case-sensative sorted order
 
-1)Pathon –version
+1)Python --version
 Check python version
 
 2)Pip install Django

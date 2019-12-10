@@ -19,7 +19,7 @@ class EmployeeList(models.Model):
     doj = models.DateTimeField(default=datetime.now, blank=True)
     user_id = models.IntegerField()
     designations = models.ForeignKey(
-        Designation, on_delete=models.DO_NOTHING, default=1)
+        Designation, on_delete=models.DO_NOTHING, default=1, related_name="designations")
     roles = models.ForeignKey(
         Role, on_delete=models.DO_NOTHING, default=2)
 

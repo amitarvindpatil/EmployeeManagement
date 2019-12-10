@@ -7,14 +7,20 @@ urlpatterns = [
     path('registration', views.Authentication.registration, name='registration'),
     path('login', views.Authentication.login, name='login'),
     path('logout', views.Authentication.logout, name='logout'),
-    path('edit_changepassword/<id>/',
-         views.Authentication.edit_changepassword, name='edit_changepassword'),
-    path('changepassword/<id>', views.Authentication.changepassword,
-         name='changepassword'),
+    #     path('edit_changepassword/<id>/',
+    #          views.Authentication.edit_changepassword, name='edit_changepassword'),
+    #     path('changepassword/<id>', views.Authentication.changepassword,
+    #          name='changepassword'),
 
 
     # data Retrivation URls
     path('dashboard', views.Employees.dashboard, name='dashboard'),
+    path('myprofile', views.Employees.myprofile, name='myprofile'),
+
+
+    # Reports
+    path('desginationwise_count', views.Reports.desginationwise_count,
+         name='desginationwise_count'),
 
     # data creation URls
     path('add_record', views.Employees.add_record, name='add_record'),
@@ -32,20 +38,20 @@ urlpatterns = [
     path('del_data/<id>', views.Employees.del_data, name='del_data'),
 
 
-    # ----------------Department Urls
+    # -----------------------Department Urls---------------------
     path('add_dept', views.Departments.add_dept, name='add_dept'),
     path('department_list', views.Departments.department_list,
          name='department_list'),
 
 
-    # Employee Authentications------------------
+    # --------------------Employee Authentications------------------
 
     path('auth_permission_dash', views.auth_permission_dash,
          name='auth_permission_dash'),
 
 
 
-    # ----------------------Designations
+    # ----------------------Designations---------------------------
 
 
     path('add_designation', views.Designations.add_designation,
@@ -64,7 +70,7 @@ urlpatterns = [
     path('delete_designation/<int:id>',
          views.Designations.delete_designation, name='delete_designation'),
 
-    # -----------------------Roles
+    # -----------------------Roles------------------------------------
     path('role_list',
          views.Roles.role_list, name='role_list'),
 
@@ -77,7 +83,7 @@ urlpatterns = [
     path('check_permissions',
          views.RolePermissions.check_permissions, name='check_permissions'),
 
-    # Permissions
+    # -------------------Permissions---------------------------------
     path('permission_list',
          views.Permissions.permission_list, name='permission_list'),
 

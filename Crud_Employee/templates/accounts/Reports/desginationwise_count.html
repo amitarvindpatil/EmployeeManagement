@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{% block content %}
+<center>
+    <h1>Designation Wise Count Reports</h1>
+</center>
+
+<div class="container-fluid text-center">
+    <div class="row content">
+
+
+        <div class="container">
+            <!-- Alerts -->
+            {% include 'partials/_alerts.html '%}
+            {% if designationcnt_list %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Designation</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for data in designationcnt_list %}
+                    <tr>
+
+                        <td>{{data.designations}}</td>
+                        <td>{{data.total}}</td>
+                        </td>
+
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                {% else %}
+                <p>Data Not Found</p>
+                {% endif %}
+            </table>
+
+
+            <!-- Pagination -->
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

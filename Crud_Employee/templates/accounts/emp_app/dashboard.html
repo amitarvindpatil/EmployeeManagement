@@ -10,19 +10,36 @@
     <div class="row content">
 
         <div class="col-sm-2 sidenav">
-            <p><a href="{% url 'add_record' %}" class="btn btn-info"> Employee Section</a> </p>
-            <p><a href="{% url 'department_list' %}" class="btn btn-info">Department Section</a> </p>
-            <p><a href="{% url 'auth_permission_dash' %}" class="btn btn-info">Authenticaton And Permissions</a></p>
-            <p></p>
+            <div class="w3-container">
+                <ul class="w3-ul w3-card-4" style="width:150%">
+                    <li>
+                        <p class="w3-text-blue"><a href="{% url 'add_record' %}"> Employee Section</a> </p>
+                    </li>
+                    <li>
+                        <p class="w3-text-blue"><a href="{% url 'department_list' %}"> Department Section</a> </p>
+                    </li>
+                    <li>
+                        <p class="w3-text-blue"><a href="{% url 'auth_permission_dash' %}"> Authenticaton &
+                                Permissions</a> </p>
+                    </li>
+                    <li>
+                        <p class="w3-text-blue"><a href="{% url 'desginationwise_count' %}"> Reports</a> </p>
+                    </li>
+
+
+                </ul>
+            </div>
+
         </div>
         <div class="container">
             <!-- Alerts -->
             {% include 'partials/_alerts.html '%}
 
+
             {% if dashboard_list %}
-            <table class="table table-striped">
+            <table class="w3-table-all">
                 <thead>
-                    <tr>
+                    <tr class="w3-indigo">
                         <th>Id</th>
                         <th>EmpName</th>
                         <th>Designation</th>
@@ -36,8 +53,8 @@
                         <td>{{data.name}}</td>
                         <td>{{data.designations.name}}</td>
                         <td>{{data.departments.deptname}}</td>
-                        <td><a href="/edit_info/{{data.id}}" class="btn btn-info">Edit</a>
-                            <a href="/del_info/{{data.id}}" class=" btn btn-danger">Delete</a></td>
+                        <td><a href="/edit_info/{{data.id}}" class="w3-button w3-teal">Edit</a></td>
+
 
                     </tr>
                 </tbody>
@@ -46,48 +63,7 @@
                 {% endif %}
             </table>
 
-            <!-- Pagination -->
-            <div class="row">
-                <div class="col-md-12">
-                    {% if dashboard_list.has_other_pages %}
-                    <ul class="pagination">
-                        {% if dashboard_list.has_previous %}
-                        <li class="page-item">
-                            <a href="?page={{dashboard_list.previous_page_number}}" class="page-link">&laquo;</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                            <a class="page-link">&laquo;</a>
-                        </li>
-                        {% endif %}
 
-                        {% for i in dashboard_list.paginator.page_range %}
-                        {% if dashboard_list.number == i %}
-                        <li class="page-item active">
-                            <a class="page-link">{{i}}</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item">
-                            <a href="?page={{i}}" class="page-link">{{i}}</a>
-                        </li>
-                        {% endif %}
-                        {% endfor %}
-
-
-                        {% if dashboard_list.has_next %}
-                        <li class="page-item">
-                            <a href="?page={{dashboard_list.next_page_number}}" class="page-link">&raquo;</a>
-                        </li>
-                        {% else %}
-                        <li class="page-item disabled">
-                            <a class="page-link">&raquo;</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                    {% endif %}
-
-                </div>
-            </div>
         </div>
     </div>
 

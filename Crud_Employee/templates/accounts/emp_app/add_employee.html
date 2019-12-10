@@ -11,9 +11,12 @@
                 <label class="sr-only">Keywords</label>
                 <input type="text" name="name" class="form-control" placeholder="Name">
             </div>
-            <button class="btn btn-success" type="submit">Search </button>&nbsp;
-            <a href="{% url 'add_record' %}" class="btn btn-success">Refresh</a>
-
+            <div class="col-md-4 mb-3">
+                <button class="w3-button w3-white w3-border w3-border-red w3-round-large"
+                    type="submit">Search</button>&nbsp;
+                <a href="{% url 'add_record' %}"
+                    class="w3-button w3-white w3-border w3-border-red w3-round-large">Refresh</a>
+            </div>
         </div>
         <br>
     </form>
